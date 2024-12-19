@@ -1,0 +1,46 @@
+<section class="projects">
+  <h2>Projects</h2>
+  <div>
+    <h2>Project 1</h2>
+    <p>
+      Lorem ipsum dolor sit, amet consectetur adipisicing elit. Quis libero impedit quisquam delectus accusantium? Reiciendis veniam assumenda explicabo magnam error.
+    </p>
+  </div>
+  <div>
+    <h2>Project 2</h2>
+    <p>
+      Voluptate, voluptas eius dolorum deleniti quo aliquam non sapiente facilis eligendi sed pariatur laboriosam optio laborum totam architecto quis accusamus?
+    </p>
+  </div>
+  <div>
+    <h2>Project 3</h2>
+    <p>
+      Quidem error voluptatem sint voluptas mollitia! Hic voluptatibus veritatis laudantium adipisci est dignissimos, rerum natus in blanditiis vitae laborum animi.
+    </p>
+  </div>
+</section>
+
+<style>
+  section {
+    min-height: 100vh;
+    background-color: cyan;
+  }
+</style>
+
+<script>
+  import { gsap } from "gsap";
+  import { ScrollTrigger } from "gsap/ScrollTrigger";
+    
+  gsap.registerPlugin(ScrollTrigger);
+
+  gsap.from(".projects > div", {
+    scrollTrigger: {
+      trigger: ".projects",
+      start: "top center"
+    },
+    x: '100vw',
+    opacity: 0,
+    duration: 1,
+    stagger: .2
+  })
+</script>

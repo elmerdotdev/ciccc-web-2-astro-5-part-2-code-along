@@ -1,0 +1,44 @@
+---
+import { BRAND } from "astro:schema";
+import PageLayout from "../../layouts/PageLayout.astro";
+import { getCollection } from "astro:content";
+
+// Get blog posts collection
+const posts = await getCollection('blog')
+
+posts.sort((a, b) => {
+  const dateA = new Date(a.data.date)
+  const dateB = new Date(b.data.date)
+
+  return dateB.getTime() - dateA.getTime()
+})
+
+const pageTitle = "Blog"
+const pageDesc = "This is the blog page"
+---
+
+<PageLayout title={pageTitle} desc={pageDesc}>
+  <h1>{pageTitle}</h1>
+  <p>{pageDesc}</p>
+
+  {posts.map((post) => (
+      <article>
+        <h3>{post.data.title}</h3>
+        <p>Published: {post.data.date}</p>
+        <em>{post.data.author}</em>
+        <div>
+        </div>
+        <div>
+          <a href={`/blog/${post.data.id}`}>Read more...</a>
+        </div>
+      </article>
+      <hr />
+    )
+  )}
+</PageLayout>
+
+<style>
+  article {
+    margin: 1rem 0;
+  }
+</style>

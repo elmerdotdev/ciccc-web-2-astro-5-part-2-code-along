@@ -1,0 +1,35 @@
+---
+import PageLayout from "../../layouts/PageLayout.astro";
+import { getCollection } from "astro:content";
+
+// Fetch countries collection
+const countries = await getCollection('countries')
+---
+
+<PageLayout>
+  <h1>Countries</h1>
+
+  <ul class="country-list">
+    {countries.map(country => (
+      <li><a href={`/countries/${country.data.cca3}`}>{country.data.name.common}</a></li>
+    ))}
+  </ul>
+</PageLayout>
+
+<style>
+  a {
+    display: inline-block;
+  }
+</style>
+
+<script>
+  import { gsap } from "gsap";
+
+  gsap.from(".country-list li a", {
+    transformOrigin: 'left center',
+    rotateY: -90,
+    opacity: 0,
+    duration: 1,
+    stagger: .2
+  })
+</script>

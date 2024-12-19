@@ -1,0 +1,25 @@
+---
+import BlogLayout from '../../layouts/BlogLayout.astro'
+import { getCollection, render } from "astro:content";
+import '../../styles/blog.css'
+
+export async function getStaticPaths() {
+  // Fetch wiki collection
+  const docs = await getCollection('wiki')
+
+  return docs.map(doc => ({
+    params: { slug: doc.id },
+    props: { doc }
+  }))
+}
+
+const { doc } = Astro.props
+const { Content } = await render(doc)
+---
+
+<BlogLayout category="wiki">
+  <article>
+    <p>Author: {doc.data.author}</p>
+    <Content />
+  </article>
+</BlogLayout>

@@ -1,0 +1,45 @@
+---
+import '../styles/global.css'
+import Header from "../components/Header.astro"
+import Sidebar from '../components/Sidebar.astro'
+import Footer from '../components/Footer.astro'
+const { title, desc, category } = Astro.props
+---
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>{title}</title>
+  <meta name="description" content={desc}>
+</head>
+<body>
+  <div class="container">
+    <Header />
+    <main>
+      <div class="content">
+        {category && (
+          <a href={`/${category}`}>Back to {category.toUpperCase()}</a>
+        )}
+        <hr />
+        <slot />
+      </div>
+      <Sidebar />
+    </main>
+    <Footer />
+  </div>
+</body>
+</html>
+
+<style>
+  main {
+    display: flex;
+    gap: 1rem;
+    padding: 1rem;
+  }
+
+  .content {
+    flex: 1;
+  }
+</style>

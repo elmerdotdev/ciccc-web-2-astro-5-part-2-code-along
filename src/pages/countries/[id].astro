@@ -1,0 +1,21 @@
+---
+import BlogLayout from "../../layouts/BlogLayout.astro";
+import { getCollection } from 'astro:content'
+
+export async function getStaticPaths() {
+  const countries = await getCollection('countries')
+
+  return countries.map(country => ({
+    params: { id: country.data.cca3 },
+    props: { country }
+  }))
+}
+
+const { country } = Astro.props
+console.log(country)
+---
+
+<BlogLayout>
+  <h1>{country.data.name.common}</h1>
+  <p>Official Name: {country.data.name.official}</p>
+</BlogLayout>

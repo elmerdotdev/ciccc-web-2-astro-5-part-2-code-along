@@ -1,0 +1,21 @@
+---
+import PageLayout from "../../layouts/PageLayout.astro";
+import { getCollection } from "astro:content";
+
+// Fetch wiki collection
+const docs = await getCollection('wiki')
+
+const pageTitle = "Wiki"
+const pageDesc = "This is the wiki page"
+---
+
+<PageLayout title={pageTitle} desc={pageDesc}>
+  <h1>Our Wiki</h1>
+  <ul class="wiki-list">
+    {docs.map(doc => (
+      <li>
+        <a href={`/wiki/${doc.data.id}`}>{doc.data.title}</a>
+      </li>
+    ))}
+  </ul>
+</PageLayout>

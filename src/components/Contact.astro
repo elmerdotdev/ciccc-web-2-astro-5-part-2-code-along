@@ -1,0 +1,46 @@
+<section class="contact">
+  <h2>Contact Us</h2>
+  <form id="contact-form" action="">
+    <input type="email" name="email" id="email" required>
+    <textarea name="info" id="info"></textarea>
+    <label>
+      Sign me up bro
+      <input type="checkbox" name="signup" id="signup">
+    </label>
+    <button type="submit">Send</button>
+  </form>
+</section>
+
+<style>
+  section {
+    background-color: orange;
+    min-height: 100vh;
+  }
+</style>
+
+<script>
+  import { gsap } from "gsap";
+  import { ScrollTrigger } from "gsap/ScrollTrigger";
+
+  gsap.registerPlugin(ScrollTrigger);
+
+  const formTl = gsap.timeline({
+    scrollTrigger: {
+      trigger: ".contact",
+      start: "top center"
+    }
+  })
+
+  formTl
+    .from(".contact h2", { x: '100vw', y: '100vh', duration: 1 })
+    .from(".contact form", { scale: 10, duration: 1 }, '<')
+
+  document.querySelector('#contact-form')?.addEventListener('submit', (e) => {
+    e.preventDefault()
+    const emailInput = document.querySelector("#contact-form #email") as HTMLInputElement
+    const infoInput = document.querySelector("#contact-form textarea") as HTMLTextAreaElement
+    const signup = document.querySelector("#contact-form #signup") as HTMLInputElement
+    console.log(signup.checked)
+    console.log(emailInput.value, infoInput.value)
+  })
+</script>

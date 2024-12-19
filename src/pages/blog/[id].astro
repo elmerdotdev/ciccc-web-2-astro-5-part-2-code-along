@@ -1,0 +1,29 @@
+---
+import BlogLayout from "../../layouts/BlogLayout.astro";
+import { getCollection, render } from "astro:content";
+
+export async function getStaticPaths() {
+  // Fetch blog posts
+  const posts = await getCollection('blog')
+
+  // Return array of url slugs
+  return posts.map(post => ({
+    params: { id: post.id },
+    props: { post }
+  }))
+}
+
+const { post } = Astro.props
+
+// Render markdown content
+const { Content } = await render(post)
+---
+
+<BlogLayout title={post.data.title} category="blog">
+  <h1>{post.data.title}</h1>
+  <p>Author: {post.data.author}</p>
+
+  <div>
+    <Content />
+  </div>
+</BlogLayout>

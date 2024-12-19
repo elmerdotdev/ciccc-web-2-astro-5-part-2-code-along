@@ -1,0 +1,47 @@
+<header>
+  <div class="logo">OUR LOGO</div>
+  <nav>
+    <menu>
+      <li>
+        <a href="/">Home</a>
+      </li>
+      <li>
+        <a href="/about">About Us</a>
+      </li>
+      <li>
+        <a href="/blog">Blog</a>
+      </li>
+      <li>
+        <a href="/wiki">Wiki</a>
+      </li>
+      <li>
+        <a href="/countries">Countries</a>
+      </li>
+    </menu>
+  </nav>
+</header>
+
+<style>
+  header {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: center;
+    padding: 1rem;
+    background-color: pink;
+  }
+
+  menu {
+    display: flex;
+    gap: 1rem;
+    list-style: none;
+    margin: 0;
+    padding: 0;
+  }
+
+  @media (min-width: 768px) {
+    header {
+      flex-direction: row;
+    }
+  }
+</style>
